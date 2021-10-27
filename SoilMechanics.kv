@@ -1,0 +1,158 @@
+WindowManager:
+    MainWindow:
+    LLWindow:
+    SCSWindow:
+
+
+
+<MainWindow>:
+    name:"mainwindow"
+
+    GridLayout:
+        cols: 2
+        size: root.width, root.height
+        Button:
+            text:   "Soil Classification System"
+            on_release:
+                app.root.current = "scswindow"
+                root.manager.transition.direction = "right"
+        Button:
+            text:   "Liquid Limit Calculator/Flow Chart Plotter"
+            on_release:
+                app.root.current = "llwindow"
+                root.manager.transition.direction = "left"
+
+
+
+<LLWindow>:
+    name:"llwindow"
+    GridLayout:
+        cols:2
+        size: root.width, root.height
+        Label:
+            text: "Number Of Blows"
+            font_size:16
+        Label:
+            text: "Moisture Content %"
+            font_size:16
+        TextInput:
+            id: nob1input
+            input_filter:'int'
+        TextInput:
+            id: mc1input
+            input_filter:'float'
+        TextInput:
+            id: nob2input
+            input_filter:'int'
+        TextInput:
+            id: mc2input
+            input_filter:'float'
+        TextInput:
+            id: nob3input
+            input_filter:'int'
+        TextInput:
+            id: mc3input
+            input_filter:'float'
+        TextInput:
+            id: nob4input
+            input_filter:'int'
+        TextInput:
+            id: mc4input
+            input_filter:'float'
+        Label:
+            id: lllabel
+            ext: ''
+        GridLayout:
+            cols:2
+            Button:
+                text: "Calculate and Plot"
+                on_release:root.plotButtonfunc()
+
+            Button:
+                text: "Go Back"
+
+                on_release:
+                    app.root.current = 'mainwindow'
+                    root.manager.transition.direction = 'right'
+
+
+
+
+
+
+
+
+<SCSWindow>:
+    name: "scswindow"
+    GridLayout:
+        cols:4
+        size: root.width, root.height
+
+        Label:
+            text: "Gravel Percentage"
+            font_size:16
+        TextInput:
+            id: gpercinput
+            input_filter:'int'
+        Label:
+            text: "Sand Percentage"
+            font_size:16
+        TextInput:
+            id: spercinput
+            input_filter:'int'
+        Label:
+            text: "Fines Percentage"
+            font_size:16
+        TextInput:
+            id: fpercinput
+            input_filter:'int'
+        Label:
+            text: "Liquid Limit"
+            font_size:16
+        TextInput:
+            id: llinput
+            input_filter:'float'
+        Label:
+            text: "Plasticity Index"
+            font_size:16
+        TextInput:
+            id: piinput
+            input_filter:'float'
+        Label:
+            text: "D10"
+            font_size:16
+        TextInput:
+            id: d10input
+            input_filter:'float'
+        Label:
+            text: "D30"
+            font_size:16
+        TextInput:
+            id: d30input
+            input_filter:'float'
+        Label:
+            text: "D60"
+            font_size:16
+        TextInput:
+            id: d60input
+            input_filter:'float'
+        Label:
+            text: "Type of Soil:"
+            font_size:16
+        Label:
+            id:resultlabel
+            text:''
+        Button:
+            text: "Calculate"
+            font_size:16
+
+            on_release: root.onButton()
+        Button:
+            text: "Go Back"
+            font_size:16
+
+            on_release:
+                app.root.current = 'mainwindow'
+                root.manager.transition.direction = 'left'
+
+
