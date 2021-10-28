@@ -13,11 +13,17 @@ WindowManager:
         size: root.width, root.height
         Button:
             text:   "Soil Classification System"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             on_release:
                 app.root.current = "scswindow"
                 root.manager.transition.direction = "right"
         Button:
             text:   "Liquid Limit Calculator/Flow Chart Plotter"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             on_release:
                 app.root.current = "llwindow"
                 root.manager.transition.direction = "left"
@@ -66,6 +72,9 @@ WindowManager:
             cols:2
             Button:
                 text: "Calculate and Plot"
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
                 on_release:root.plotButtonfunc()
 
             Button:
