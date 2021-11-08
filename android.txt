@@ -1,0 +1,3 @@
+title= Soil Mechanics Calculators
+author= Salih Yavuz
+orietation= portrait

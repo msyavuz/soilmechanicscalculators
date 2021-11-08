@@ -9,6 +9,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.gridlayout import GridLayout
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy_garden import graph
 
 
 class MainWindow(Screen):
@@ -163,7 +164,34 @@ class SCSWindow(Screen):
                 elif ll > 50:
                     self.ids.resultlabel.text = 'MH/OH'
 
+class WCWindow(Screen):
+    def wccalc(self):
+        mw = float(self.ids.mwinput.text)
+        ms = float(self.ids.msinput.text)
+        res = mw/ms
+        self.ids.wclabel.text = str(res)
+class SRWindow(Screen):
+    def srcalc(self):
+        bd = int(self.ids.bdinput.text)
+        wc = float(self.ids.wcinput.text)
+        gs = float(self.ids.gsinput.text)
+        pw = 1000
+        res1 = ((wc*gs*pw+(gs*pw))/bd)-1
+        res = wc*gs/res1
+        self.ids.srlabel.text = str(res)
+class VRWindow(Screen):
+    def vrcalc(self):
+        
+        bd = int(self.ids.bdinput.text)
+        wc = float(self.ids.wcinput.text)
+        gs = float(self.ids.gsinput.text)
+        pw = 1000
+        res = ((wc*gs*pw+(gs*pw))/bd)-1
+        self.ids.vrlabel.text= str(res)
 
+
+
+    
 
 class WindowManager(ScreenManager):
     pass

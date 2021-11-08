@@ -2,6 +2,9 @@ WindowManager:
     MainWindow:
     LLWindow:
     SCSWindow:
+    WCWindow:
+    SRWindow:
+    VRWindow:
 
 
 
@@ -9,7 +12,7 @@ WindowManager:
     name:"mainwindow"
 
     GridLayout:
-        cols: 2
+        cols: 3
         size: root.width, root.height
         Button:
             text:   "Soil Classification System"
@@ -20,14 +23,43 @@ WindowManager:
                 app.root.current = "scswindow"
                 root.manager.transition.direction = "right"
         Button:
-            text:   "Liquid Limit Calculator/Flow Chart Plotter"
+            text:   "Liquid Limit Calculator"
             halign: 'center'
             valign: 'center'
             text_size: self.size
             on_release:
                 app.root.current = "llwindow"
                 root.manager.transition.direction = "left"
-
+        Button:
+            text:   "Water Content Calculator"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release:
+                app.root.current = "wcwindow"
+                root.manager.transition.direction = "left"
+        Button:
+            text:   "Degree of Saturation Calculator"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release:
+                app.root.current = "srwindow"
+                root.manager.transition.direction = "left"
+        Button:
+            text:   "Void Ratio Calculator"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release:
+                app.root.current = "vrwindow"
+                root.manager.transition.direction = "left"
+        Button:
+            text:   "Exit"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release: app.stop()
 
 
 <LLWindow>:
@@ -37,9 +69,15 @@ WindowManager:
         size: root.width, root.height
         Label:
             text: "Number Of Blows"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         Label:
             text: "Moisture Content %"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: nob1input
@@ -99,69 +137,265 @@ WindowManager:
 
         Label:
             text: "Gravel Percentage"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: gpercinput
             input_filter:'int'
         Label:
             text: "Sand Percentage"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: spercinput
             input_filter:'int'
         Label:
             text: "Fines Percentage"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: fpercinput
             input_filter:'int'
         Label:
             text: "Liquid Limit"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: llinput
             input_filter:'float'
         Label:
             text: "Plasticity Index"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: piinput
             input_filter:'float'
         Label:
             text: "D10"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: d10input
             input_filter:'float'
         Label:
             text: "D30"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: d30input
             input_filter:'float'
         Label:
             text: "D60"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
         TextInput:
             id: d60input
             input_filter:'float'
         Label:
             text: "Type of Soil:"
-            font_size:16
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
         Label:
             id:resultlabel
             text:''
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
         Button:
             text: "Calculate"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
 
             on_release: root.onButton()
         Button:
             text: "Go Back"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
             font_size:16
 
             on_release:
                 app.root.current = 'mainwindow'
                 root.manager.transition.direction = 'left'
 
+
+<WCWindow>:
+    name: "wcwindow"
+    GridLayout:
+        cols: 2
+        size: root.width, root.height
+        Label:
+            text: "Mass of Water (Mw):"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: mwinput
+            input_filter:'float'
+        Label:
+            text: "Mass of Solids (Ms):"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: msinput
+            input_filter:'float'
+        GridLayout:
+            cols: 3
+            Button:
+                text:   "Calculate"
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
+                on_release: root.wccalc()
+            Label:
+                id: wclabel
+                text: ''
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
+                font_size:16
+
+        Button:
+            text:   "Go Back"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release:
+                app.root.current = "mainwindow"
+                root.manager.transition.direction = "right"   
+<SRWindow>:
+    name: "srwindow"
+    GridLayout:
+        cols: 2
+        size: root.width, root.height
+        Label:
+            text: "Bulk Density:"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: bdinput
+            input_filter:'float'
+        Label:
+            text: "Water Content:"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: wcinput
+            input_filter:'float'
+        Label:
+            text: "Specific Gravity:"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: gsinput
+            input_filter:'float'
+        GridLayout:
+            cols: 2
+            Button:
+                text: "Calculate"
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
+                on_release: root.srcalc()
+            Label:
+                id: srlabel
+                text: ''
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
+                font_size:16
+
+        Button:
+            text:   "Go Back"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release:
+                app.root.current = "mainwindow"
+                root.manager.transition.direction = "right"  
+
+<VRWindow>:
+    name: "vrwindow"
+    GridLayout:
+        cols: 2
+        size: root.width, root.height
+        Label:
+            text: "Bulk Density:"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: bdinput
+            input_filter:'float'
+        Label:
+            text: "Water Content:"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: wcinput
+            input_filter:'float'
+        Label:
+            text: "Specific Gravity:"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            font_size:16
+        TextInput:
+            id: gsinput
+            input_filter:'float'
+        GridLayout:
+            cols: 2
+            Button:
+                text: "Calculate"
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
+                on_release: root.vrcalc()
+            Label:
+                id: vrlabel
+                text: ''
+                halign: 'center'
+                valign: 'center'
+                text_size: self.size
+                font_size:16
+
+        Button:
+            text:   "Go Back"
+            halign: 'center'
+            valign: 'center'
+            text_size: self.size
+            on_release:
+                app.root.current = "mainwindow"
+                root.manager.transition.direction = "right"  
 
